@@ -73,12 +73,19 @@
 
     on(hamburger, 'click', toggle);
     on(closeBtn,  'click', close);
-    on(overlay,   'click', close);
 
-    // Close menu when a nav link is clicked (handy for in-page anchors)
-    $$('.nav__link, .nav__cta', nav).forEach(link => on(link, 'click', () => {
-      if (window.innerWidth <= 960) close();
-    }));
+    // Overlay click closes — but only if user actually tapped the overlay,
+    // not a child or a bubbled event from the drawer panel.
+    on(overlay, 'click', (e) => {
+      if (e.target === overlay) close();
+    });
+
+    // Close drawer on link click. Do NOT preventDefault — let the browser navigate.
+    $$('.nav__link, .nav__cta', nav).forEach(link => {
+      on(link, 'click', () => {
+        if (window.innerWidth <= 960) close();
+      });
+    });
 
     // Close on Escape
     on(document, 'keydown', (e) => {
