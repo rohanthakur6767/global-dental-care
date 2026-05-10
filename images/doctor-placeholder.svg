@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="800" height="900" role="img" aria-labelledby="docTitle docDesc">
+  <title id="docTitle">Dr. Dhruv Balooni — portrait placeholder</title>
+  <desc id="docDesc">Soft teal placeholder illustration of a doctor silhouette with a stethoscope. Real photograph to be added.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#0e7490"/>
+      <stop offset="55%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.4" r="0.5">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- BG -->
+  <rect width="800" height="900" fill="url(#bg)"/>
+  <rect width="800" height="900" fill="url(#halo)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="120" cy="120" r="60" fill="#ffffff" opacity="0.08"/>
+  <circle cx="720" cy="200" r="90" fill="#ffffff" opacity="0.06"/>
+  <circle cx="680" cy="780" r="50" fill="#ffffff" opacity="0.10"/>
+  <circle cx="120" cy="760" r="40" fill="#ffffff" opacity="0.10"/>
+
+  <!-- Dot grid corners -->
+  <g fill="#ffffff" opacity="0.18">
+    <circle cx="60"  cy="220" r="3"/>
+    <circle cx="100" cy="220" r="3"/>
+    <circle cx="60"  cy="260" r="3"/>
+    <circle cx="700" cy="640" r="3"/>
+    <circle cx="740" cy="640" r="3"/>
+    <circle cx="700" cy="680" r="3"/>
+  </g>
+
+  <!-- Doctor silhouette -->
+  <g transform="translate(400, 380)">
+    <!-- Soft halo behind head -->
+    <circle cx="0" cy="0" r="170" fill="#ffffff" opacity="0.10"/>
+    <!-- Head -->
+    <circle cx="0" cy="-20" r="100" fill="#ffffff" opacity="0.95"/>
+    <!-- Shoulders / coat -->
+    <path fill="#ffffff" opacity="0.95"
+          d="M-220,260
+             C-220,170 -150,110 -80,90
+             L-60,80
+             C-40,120 -20,140 0,140
+             C20,140 40,120 60,80
+             L80,90
+             C150,110 220,170 220,260
+             L220,360
+             L-220,360 Z"/>
+    <!-- Coat lapels -->
+    <path fill="#cffafe" opacity="0.9"
+          d="M-60,80 L-30,200 L-50,260 L-80,90 Z"/>
+    <path fill="#cffafe" opacity="0.9"
+          d="M60,80 L30,200 L50,260 L80,90 Z"/>
+    <!-- Shirt collar -->
+    <path fill="#0e7490"
+          d="M-30,200 L0,150 L30,200 L0,230 Z"/>
+
+    <!-- Stethoscope -->
+    <g fill="none" stroke="#0e7490" stroke-width="6" stroke-linecap="round">
+      <path d="M-40,210 Q-90,260 -90,310 Q-90,340 -60,340"/>
+      <path d="M40,210 Q90,260 90,310 Q90,340 60,340"/>
+    </g>
+    <circle cx="0" cy="350" r="22" fill="#0e7490"/>
+    <circle cx="0" cy="350" r="12" fill="#ffffff" opacity="0.4"/>
+  </g>
+
+  <!-- Floating sparkle -->
+  <g transform="translate(620, 300)">
+    <path fill="#fbbf24"
+          d="M0,-20 C1,-7 7,-1 20,0 C7,1 1,7 0,20 C-1,7 -7,1 -20,0 C-7,-1 -1,-7 0,-20 Z"/>
+  </g>
+  <g transform="translate(180, 480)">
+    <path fill="#fbbf24"
+          d="M0,-14 C1,-5 5,-1 14,0 C5,1 1,5 0,14 C-1,5 -5,1 -14,0 C-5,-1 -1,-5 0,-14 Z"/>
+  </g>
+
+  <!-- Caption -->
+  <g transform="translate(400, 800)">
+    <text text-anchor="middle" fill="#ffffff" font-family="'Poppins', 'Segoe UI', sans-serif" font-size="38" font-weight="700">
+      Dr. Dhruv Balooni
+    </text>
+    <text y="40" text-anchor="middle" fill="#cffafe" font-family="'Inter', 'Segoe UI', sans-serif" font-size="20" font-weight="500" letter-spacing="2">
+      DENTAL SURGEON · BDS
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-labelledby="heroIllusTitle heroIllusDesc">
+  <title id="heroIllusTitle">A friendly, smiling tooth</title>
+  <desc id="heroIllusDesc">Illustration of a happy tooth character with sparkles and a heart, in soft teal tones, representing healthy, friendly dental care.</desc>
+
+  <defs>
+    <!-- Page background -->
+    <radialGradient id="bgGrad" cx="0.5" cy="0.42" r="0.7">
+      <stop offset="0%"  stop-color="#ecfeff"/>
+      <stop offset="60%" stop-color="#f7fdfe"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </radialGradient>
+
+    <!-- Inner glow disk -->
+    <radialGradient id="glowGrad" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"  stop-color="#a5f3fc" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#cffafe" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#cffafe" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Tooth body gradient -->
+    <linearGradient id="toothGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%"  stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#f4fcfd"/>
+      <stop offset="100%" stop-color="#dff5f8"/>
+    </linearGradient>
+
+    <!-- Tooth specular highlight -->
+    <linearGradient id="hiliteGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Soft drop shadow -->
+    <filter id="toothShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="0" dy="22"/>
+      <feColorMatrix values="0 0 0 0 0.03  0 0 0 0 0.36  0 0 0 0 0.45  0 0 0 0.18 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <!-- ===== BACKGROUND ===== -->
+  <rect width="800" height="800" fill="url(#bgGrad)"/>
+
+  <!-- Soft layered disks behind the tooth -->
+  <circle cx="400" cy="400" r="320" fill="#e0fbfd"/>
+  <circle cx="400" cy="400" r="320" fill="url(#glowGrad)"/>
+  <circle cx="400" cy="400" r="240" fill="#cffafe" opacity="0.7"/>
+
+  <!-- Decorative dot grids (corners) -->
+  <g fill="#0891b2" opacity="0.18">
+    <!-- top-left -->
+    <circle cx="80"  cy="80"  r="3"/>
+    <circle cx="120" cy="80"  r="3"/>
+    <circle cx="160" cy="80"  r="3"/>
+    <circle cx="80"  cy="120" r="3"/>
+    <circle cx="120" cy="120" r="3"/>
+    <circle cx="80"  cy="160" r="3"/>
+    <!-- top-right -->
+    <circle cx="720" cy="80"  r="3"/>
+    <circle cx="680" cy="80"  r="3"/>
+    <circle cx="640" cy="80"  r="3"/>
+    <circle cx="720" cy="120" r="3"/>
+    <circle cx="680" cy="120" r="3"/>
+    <circle cx="720" cy="160" r="3"/>
+    <!-- bottom-left -->
+    <circle cx="80"  cy="720" r="3"/>
+    <circle cx="120" cy="720" r="3"/>
+    <circle cx="80"  cy="680" r="3"/>
+    <!-- bottom-right -->
+    <circle cx="720" cy="720" r="3"/>
+    <circle cx="680" cy="720" r="3"/>
+    <circle cx="720" cy="680" r="3"/>
+  </g>
+
+  <!-- Sun rays radiating from the tooth -->
+  <g stroke="#0891b2" stroke-width="6" stroke-linecap="round" opacity="0.45" fill="none">
+    <line x1="400" y1="120" x2="400" y2="170"/>
+    <line x1="265" y1="170" x2="298" y2="208"/>
+    <line x1="535" y1="170" x2="502" y2="208"/>
+    <line x1="180" y1="320" x2="225" y2="320"/>
+    <line x1="620" y1="320" x2="575" y2="320"/>
+    <line x1="200" y1="220" x2="235" y2="245"/>
+    <line x1="600" y1="220" x2="565" y2="245"/>
+  </g>
+
+  <!-- Subtle sparkle twinkles on background -->
+  <g fill="#0891b2" opacity="0.35">
+    <circle cx="240" cy="640" r="4"/>
+    <circle cx="560" cy="640" r="4"/>
+    <circle cx="320" cy="710" r="3"/>
+    <circle cx="480" cy="710" r="3"/>
+    <circle cx="400" cy="730" r="5"/>
+  </g>
+
+  <!-- ===== TOOTH ===== -->
+  <g transform="translate(400, 410)">
+    <!-- Body -->
+    <g filter="url(#toothShadow)">
+      <path fill="url(#toothGrad)" stroke="#0891b2" stroke-width="3" stroke-opacity="0.18"
+            d="M0,-200
+               C-90,-200 -150,-170 -180,-145
+               C-200,-122 -200,-92 -195,-50
+               C-188,12 -158,68 -148,135
+               C-138,182 -125,222 -92,222
+               C-58,222 -50,135 -28,135
+               C-10,135 -2,200 0,205
+               C2,200 10,135 28,135
+               C50,135 58,222 92,222
+               C125,222 138,182 148,135
+               C158,68 188,12 195,-50
+               C200,-92 200,-122 180,-145
+               C150,-170 90,-200 0,-200 Z"/>
+    </g>
+
+    <!-- Top-left specular highlight -->
+    <path fill="url(#hiliteGrad)" opacity="0.65"
+          d="M-110,-160
+             C-138,-138 -158,-100 -160,-58
+             C-160,-28 -150,-8 -138,-8
+             C-128,-8 -123,-28 -118,-58
+             C-115,-95 -100,-130 -82,-150
+             C-92,-162 -100,-164 -110,-160 Z"/>
+
+    <!-- Closed-eye smile (left) -->
+    <path fill="none" stroke="#0e7490" stroke-width="8" stroke-linecap="round"
+          d="M-78,-22 Q-58,-52 -38,-22"/>
+    <!-- Closed-eye smile (right) -->
+    <path fill="none" stroke="#0e7490" stroke-width="8" stroke-linecap="round"
+          d="M38,-22 Q58,-52 78,-22"/>
+
+    <!-- Mouth / smile -->
+    <path fill="#0e7490"
+          d="M-46,32
+             Q0,86 46,32
+             Q40,64 0,64
+             Q-40,64 -46,32 Z"/>
+    <!-- Tongue hint -->
+    <path fill="#f87171" opacity="0.6"
+          d="M-22,52 Q0,72 22,52 Q14,62 0,62 Q-14,62 -22,52 Z"/>
+
+    <!-- Cheek blushes -->
+    <ellipse cx="-100" cy="14"  rx="16" ry="9" fill="#e85a48" opacity="0.40"/>
+    <ellipse cx="100"  cy="14"  rx="16" ry="9" fill="#e85a48" opacity="0.40"/>
+  </g>
+
+  <!-- ===== FLOATING ELEMENTS ===== -->
+
+  <!-- Big yellow 4-point sparkle (top-left of tooth) -->
+  <g transform="translate(180, 230)">
+    <path fill="#f59e0b"
+          d="M0,-34 C2,-12 12,-2 34,0 C12,2 2,12 0,34 C-2,12 -12,2 -34,0 C-12,-2 -2,-12 0,-34 Z"/>
+    <circle cx="0" cy="0" r="3" fill="#fff"/>
+  </g>
+
+  <!-- Small teal tooth (top-right) -->
+  <g transform="translate(620, 200) rotate(18) scale(0.32)">
+    <path fill="#06b6d4"
+          d="M0,-100
+             C-50,-100 -78,-80 -92,-65
+             C-100,-50 -100,-30 -98,-10
+             C-92,30 -75,55 -70,90
+             C-65,118 -55,140 -40,140
+             C-25,140 -22,90 -12,90
+             C-4,90 0,120 0,120
+             C0,120 4,90 12,90
+             C22,90 25,140 40,140
+             C55,140 65,118 70,90
+             C75,55 92,30 98,-10
+             C100,-30 100,-50 92,-65
+             C78,-80 50,-100 0,-100 Z"/>
+  </g>
+
+  <!-- Heart (bottom-left) -->
+  <g transform="translate(170, 600)">
+    <path fill="#e85a48"
+          d="M0,18
+             C-22,0 -38,-8 -38,-22
+             C-38,-32 -28,-40 -18,-40
+             C-10,-40 -4,-36 0,-30
+             C4,-36 10,-40 18,-40
+             C28,-40 38,-32 38,-22
+             C38,-8 22,0 0,18 Z"/>
+    <!-- highlight -->
+    <ellipse cx="-12" cy="-26" rx="6" ry="4" fill="#fff" opacity="0.55"/>
+  </g>
+
+  <!-- Plus sparkle (bottom-right) -->
+  <g transform="translate(625, 615)" stroke="#06b6d4" stroke-width="6" stroke-linecap="round" fill="none">
+    <line x1="0" y1="-22" x2="0" y2="22"/>
+    <line x1="-22" y1="0" x2="22" y2="0"/>
+  </g>
+  <circle cx="625" cy="615" r="3" fill="#06b6d4"/>
+
+  <!-- Small sparkle (left mid) -->
+  <g transform="translate(110, 420)">
+    <path fill="#f59e0b"
+          d="M0,-16 C1,-6 6,-1 16,0 C6,1 1,6 0,16 C-1,6 -6,1 -16,0 C-6,-1 -1,-6 0,-16 Z"/>
+  </g>
+
+  <!-- Small sparkle (right mid) -->
+  <g transform="translate(680, 460)">
+    <path fill="#06b6d4"
+          d="M0,-18 C2,-7 7,-2 18,0 C7,2 2,7 0,18 C-2,7 -7,2 -18,0 C-7,-2 -2,-7 0,-18 Z"/>
+  </g>
+
+  <!-- Tiny twinkle dots (top) -->
+  <g fill="#0891b2" opacity="0.6">
+    <circle cx="290" cy="160" r="4"/>
+    <circle cx="510" cy="160" r="4"/>
+    <circle cx="380" cy="100" r="3"/>
+    <circle cx="420" cy="100" r="3"/>
+  </g>
+
+</svg>
