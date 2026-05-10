@@ -82,25 +82,11 @@
 
     // Close drawer on link click. Do NOT preventDefault — let the browser navigate.
     $$('.nav__link, .nav__cta', nav).forEach(link => {
-      on(link, 'click', () => {
+      on(link, 'click', (e) => {
+        console.log('[nav] link tapped:', link.href, 'defaultPrevented=', e.defaultPrevented);
         if (window.innerWidth <= 960) close();
       });
     });
-
-    /* ===== TEMPORARY DIAGNOSTIC — REMOVE AFTER CONFIRMING FIX =====
-       If you tap a link and the alert pops up but you don't navigate:
-         → something else is calling preventDefault or canceling the event
-       If you tap a link and NOTHING pops up:
-         → the click is being captured by another element (overlay,
-           floating button, page-header) — your tap never reaches the link */
-    document.querySelectorAll('.nav__link, .nav__cta').forEach(link => {
-      link.addEventListener('click', (e) => {
-        console.log('[NAV-DEBUG] Link tapped:', link.href, 'target=', e.target.tagName, 'defaultPrevented=', e.defaultPrevented);
-        // Comment the next line out once you've confirmed clicks reach the link.
-        alert('Link tapped: ' + link.textContent.trim() + '\n→ ' + link.href);
-      }, true); // capture phase — runs before any other handler
-    });
-    /* ===== END DIAGNOSTIC ===== */
 
     // Close on Escape
     on(document, 'keydown', (e) => {
