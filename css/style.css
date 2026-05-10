@@ -386,9 +386,13 @@ p  { margin: 0 0 var(--sp-4); color: var(--c-text-soft); }
 }
 .body--locked { overflow: hidden; }
 
-/* When drawer is open, hide everything outside it that could
-   poke through stacking contexts (sticky header, floats, etc.) */
+/* When drawer is open, hide the page-header chrome (logo + hamburger)
+   so the drawer header isn't competing with it for attention.
+   The drawer (.nav) lives inside .header in the markup, so we
+   re-show it explicitly with visibility: visible. */
 .body--locked .header { visibility: hidden; }
+.body--locked .header .nav,
+.body--locked .header .nav * { visibility: visible; }
 .body--locked .float-btn,
 .body--locked .back-to-top { display: none; }
 
