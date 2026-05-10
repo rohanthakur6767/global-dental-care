@@ -386,11 +386,17 @@ p  { margin: 0 0 var(--sp-4); color: var(--c-text-soft); }
 }
 .body--locked { overflow: hidden; }
 
-/* When drawer is open, hide the page-header chrome (logo + hamburger)
-   so the drawer header isn't competing with it for attention.
-   The drawer (.nav) lives inside .header in the markup, so we
-   re-show it explicitly with visibility: visible. */
-.body--locked .header { visibility: hidden; }
+/* When drawer is open: the .nav lives INSIDE .header in the markup,
+   and .header creates a stacking context (position:sticky + backdrop-filter).
+   That means the drawer's z-index is local to .header — by default the
+   overlay (z-index 90) paints ABOVE the drawer and steals the taps.
+   Fix: lift the entire header above the overlay; the page-header chrome
+   stays invisible via `visibility: hidden`, and the drawer becomes the
+   only clickable thing in that lifted subtree. */
+.body--locked .header {
+  visibility: hidden;
+  z-index: 110; /* > overlay (90), so drawer descendants are hit-testable */
+}
 .body--locked .header .nav,
 .body--locked .header .nav * { visibility: visible; }
 .body--locked .float-btn,
