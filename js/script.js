@@ -263,6 +263,13 @@
     const form = $('#contactForm');
     if (!form) return;
 
+    // Prevent picking a date in the past
+    const dateField = form.elements.date;
+    if (dateField) {
+      const today = new Date().toISOString().split('T')[0];
+      dateField.min = today;
+    }
+
     const showError = (field, msg) => {
       const wrap = field.closest('.form-field');
       if (!wrap) return;
