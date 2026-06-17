@@ -22,6 +22,7 @@
     initTestimonialSlider();
     initBackToTop();
     initContactForm();
+    initGallery();
     initYearStamp();
   }
 
@@ -82,8 +83,7 @@
 
     // Close drawer on link click. Do NOT preventDefault — let the browser navigate.
     $$('.nav__link, .nav__cta', nav).forEach(link => {
-      on(link, 'click', (e) => {
-        console.log('[nav] link tapped:', link.href, 'defaultPrevented=', e.defaultPrevented);
+      on(link, 'click', () => {
         if (window.innerWidth <= 960) close();
       });
     });
@@ -345,6 +345,109 @@
   function initYearStamp() {
     const y = $('#year');
     if (y) y.textContent = new Date().getFullYear();
+  }
+
+  /* -------------------------------------------------------- */
+  /* 10. Gallery — category filter + lightbox                 */
+  /*     (Used by gallery.html — safely no-ops elsewhere)     */
+  /* -------------------------------------------------------- */
+  function initGallery() {
+    const gallery = $('.gallery');
+    if (!gallery) return;
+
+    const items    = $$('.gallery__item', gallery);
+    const filters  = $$('.gallery__filter', gallery);
+    const emptyMsg = $('#galleryEmpty');
+    if (!items.length) return;
+
+    /* ---- Category filtering ---- */
+    const applyFilter = (cat) => {
+      let shown = 0;
+      items.forEach(item => {
+        const match = cat === 'all' || item.dataset.cat === cat;
+        item.hidden = !match;
+        if (match) shown++;
+      });
+      if (emptyMsg) emptyMsg.hidden = shown !== 0;
+    };
+
+    filters.forEach(btn => {
+      on(btn, 'click', () => {
+        filters.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    /* ---- Lightbox (built once, reused) ---- */
+    const box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Image viewer');
+    box.innerHTML =
+      '<button class="lightbox__close" type="button" aria-label="Close image viewer">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>' +
+      '</button>' +
+      '<button class="lightbox__nav lightbox__prev" type="button" aria-label="Previous image">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>' +
+      '</button>' +
+      '<figure class="lightbox__stage"><img alt="" /><figcaption></figcaption></figure>' +
+      '<button class="lightbox__nav lightbox__next" type="button" aria-label="Next image">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8.6 7.4 10 6l6 6-6 6-1.4-1.4L13.2 12z"/></svg>' +
+      '</button>';
+    document.body.appendChild(box);
+
+    const lbImg = $('.lightbox__stage img', box);
+    const lbCap = $('.lightbox__stage figcaption', box);
+    let current = 0;
+
+    const visibleItems = () => items.filter(it => !it.hidden);
+
+    const render = (list) => {
+      const item = list[current];
+      if (!item) return;
+      const img = $('img', item);
+      const cap = $('.gallery__cap', item);
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = cap ? cap.textContent : img.alt;
+    };
+
+    const open = (item) => {
+      const list = visibleItems();
+      current = list.indexOf(item);
+      if (current < 0) return;
+      render(list);
+      box.classList.add('is-open');
+      document.body.classList.add('body--lightbox-open');
+    };
+    const close = () => {
+      box.classList.remove('is-open');
+      document.body.classList.remove('body--lightbox-open');
+    };
+    const step = (dir) => {
+      const list = visibleItems();
+      if (!list.length) return;
+      current = (current + dir + list.length) % list.length;
+      render(list);
+    };
+
+    items.forEach(item => on(item, 'click', () => open(item)));
+    on($('.lightbox__close', box), 'click', close);
+    on($('.lightbox__prev', box),  'click', () => step(-1));
+    on($('.lightbox__next', box),  'click', () => step(1));
+    on(box, 'click', (e) => { if (e.target === box) close(); });
+    on(document, 'keydown', (e) => {
+      if (!box.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'ArrowRight') step(1);
+    });
   }
 
 })();

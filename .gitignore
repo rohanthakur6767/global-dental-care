@@ -1,0 +1,11 @@
+# Local tooling / editor config
+.claude/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs / temp
+*.log
